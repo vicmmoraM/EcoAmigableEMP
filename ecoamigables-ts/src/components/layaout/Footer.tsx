@@ -58,15 +58,15 @@ const Footer = () => {
                 <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              hola@ecoamigables.com
+                vicmmora@espol.edu.ec
             </a>
           </div>
         </div>
 
         {/* Copyright */}
         <div className="footer-bottom">
-          <p>© 2024 EcoAmigables. Todos los derechos reservados.</p>
-          <p className="footer-love">Hecho con <span>❤️</span> por el planeta</p>
+          <p>© 2025 EcoAmigables. Todos los derechos reservados.</p>
+          <p className="footer-love">Hecho con corazón por el planeta</p>
         </div>
       </div>
     </footer>
