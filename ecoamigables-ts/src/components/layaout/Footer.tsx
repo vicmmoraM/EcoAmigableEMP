@@ -47,7 +47,6 @@ const Footer = () => {
             <Link to="/guias">Guía de Residuos</Link>
             <Link to="/mapa">Puntos de Reciclaje</Link>
             <Link to="/metas">Consejos Ecológicos</Link>
-            <Link to="/perfil">Mi Perfil</Link>
           </div>
 
           {/* Contacto */}
