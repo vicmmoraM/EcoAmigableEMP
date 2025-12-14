@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-routing-machine';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import type { RecyclingPoint } from '../../data/recyclingPoints';
 
 // Fix para los iconos de Leaflet
@@ -35,7 +37,42 @@ const userIcon = new L.Icon({
 interface MapComponentProps {
   points: RecyclingPoint[];
   userLocation: [number, number] | null;
+  selectedPoint: RecyclingPoint | null;
   onPointClick?: (point: RecyclingPoint) => void;
+}
+
+// Componente para manejar la Ruta (Dijkstra/OSRM)
+function RoutingMachine({ userLocation, destination }: { userLocation: [number, number], destination: [number, number] }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map || !userLocation || !destination) return;
+
+    // @ts-ignore
+    const routingControl = L.Routing.control({
+      waypoints: [
+        L.latLng(userLocation[0], userLocation[1]),
+        L.latLng(destination[0], destination[1])
+      ],
+      lineOptions: {
+        styles: [{ color: 'red', weight: 5, opacity: 0.7 }], // RUTA ROJA
+        extendToWaypoints: true,
+        missingRouteTolerance: 0
+      },
+      show: false, // Ocultar instrucciones de texto
+      addWaypoints: false, // Evitar añadir puntos
+      routeWhileDragging: false,
+      draggableWaypoints: false,
+      fitSelectedRoutes: true,
+      createMarker: () => null // No crear marcadores extra
+    }).addTo(map);
+
+    return () => {
+      map.removeControl(routingControl);
+    };
+  }, [map, userLocation, destination]);
+
+  return null;
 }
 
 // Componente para centrar el mapa cuando cambia la ubicación
@@ -47,7 +84,7 @@ function MapUpdater({ center }: { center: [number, number] }) {
   return null;
 }
 
-const MapComponent = ({ points, userLocation, onPointClick }: MapComponentProps) => {
+const MapComponent = ({ points, userLocation, selectedPoint, onPointClick }: MapComponentProps) => {
   const [mapCenter, setMapCenter] = useState<[number, number]>([-2.1894, -79.8875]);
 
   useEffect(() => {
@@ -69,6 +106,14 @@ const MapComponent = ({ points, userLocation, onPointClick }: MapComponentProps)
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       
+      {/* Componente de Ruta: Solo se activa si hay usuario y punto seleccionado */}
+      {userLocation && selectedPoint && (
+        <RoutingMachine 
+          userLocation={userLocation} 
+          destination={selectedPoint.coords} 
+        />
+      )}
+
       {/* Marcadores de puntos de reciclaje */}
       {points.map((point) => (
         <Marker
@@ -85,13 +130,13 @@ const MapComponent = ({ points, userLocation, onPointClick }: MapComponentProps)
                 {point.name}
               </h3>
               <p style={{ margin: '5px 0', fontSize: '0.95em' }}>
-                <strong>📦 Materiales:</strong> {point.materials}
+                <strong>Materiales:</strong> {point.materials}
               </p>
               <p style={{ margin: '5px 0', fontSize: '0.95em' }}>
-                <strong>🕐 Horario:</strong> {point.hours}
+                <strong>Horario:</strong> {point.hours}
               </p>
               <p style={{ margin: '5px 0', fontSize: '0.95em' }}>
-                <strong>📍 Dirección:</strong> {point.address}
+                <strong>Dirección:</strong> {point.address}
               </p>
             </div>
           </Popup>

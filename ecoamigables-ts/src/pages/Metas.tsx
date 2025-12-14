@@ -65,11 +65,11 @@ const Metas = () => {
     : presetGoals.filter(g => g.category === selectedCategory);
 
   const categories = [
-    { id: 'todas', label: '🌟 Todas', color: '#5B8A72' },
-    { id: 'diario', label: '☀️ Diarias', color: '#FF9800' },
-    { id: 'semanal', label: '📅 Semanales', color: '#2196F3' },
-    { id: 'mensual', label: '🗓️ Mensuales', color: '#9C27B0' },
-    { id: 'habito', label: '🎯 Hábitos', color: '#4CAF50' }
+    { id: 'todas', label: 'Todas', color: '#5B8A72' },
+    { id: 'diario', label: 'Diarias', color: '#FF9800' },
+    { id: 'semanal', label: 'Semanales', color: '#2196F3' },
+    { id: 'mensual', label: 'Mensuales', color: '#9C27B0' },
+    { id: 'habito', label: 'Hábitos', color: '#4CAF50' }
   ];
 
   const getDifficultyColor = (difficulty: string) => {
@@ -107,14 +107,14 @@ const Metas = () => {
 
       {/* Agregar nueva meta */}
       <div className="add-goal-section">
-        <h2>➕ Agregar Nueva Meta</h2>
+        <h2>Agregar Nueva Meta</h2>
         
         <div className="add-goal-buttons">
           <button 
             onClick={() => setShowPresetGoals(!showPresetGoals)}
             className="preset-goals-button"
           >
-            {showPresetGoals ? '✏️ Crear Meta Personalizada' : '📋 Ver Metas Sugeridas'}
+            {showPresetGoals ? 'Crear Meta Personalizada' : ' Ver Metas Sugeridas'}
           </button>
         </div>
 
@@ -189,7 +189,7 @@ const Metas = () => {
 
       {/* Lista de metas */}
       <div className="goals-section">
-        <h2>📋 Mis Metas</h2>
+        <h2>Mis Metas</h2>
         {goals.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">🎯</div>
@@ -224,7 +224,7 @@ const Metas = () => {
       {/* Notificaciones */}
       {showNotification && (
         <div className="notification show">
-          ✅ Meta agregada exitosamente
+          Meta agregada exitosamente
         </div>
       )}
 

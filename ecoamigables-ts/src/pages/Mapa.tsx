@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import MapComponent from '../components/mapa/MapComponent';
 import { recyclingPoints, pointTypes } from '../data/recyclingPoints';
 import type { RecyclingPoint } from '../data/recyclingPoints';
@@ -12,7 +12,7 @@ const Mapa = () => {
   const [selectedType, setSelectedType] = useState<string>('todos');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Calcular distancia usando fórmula de Haversine
+  // 1. Calcular distancia (Fórmula de Haversine)
   const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
     const R = 6371; // Radio de la Tierra en km
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -25,13 +25,33 @@ const Mapa = () => {
     return R * c;
   };
 
-  // Encontrar punto más cercano
-  const findNearestPoint = (userLat: number, userLon: number) => {
+  // 2. Definir los puntos filtrados PRIMERO (para usarlos en el cálculo automático)
+  const filteredPoints = useMemo(() => {
+    return recyclingPoints.filter(point => {
+      const matchesType = selectedType === 'todos' || point.type === selectedType;
+      const matchesSearch = point.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           point.materials.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           point.address.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesType && matchesSearch;
+    });
+  }, [selectedType, searchQuery]);
+
+  // 3. EFECTO AUTOMÁTICO: Recalcular el más cercano cada vez que cambia el filtro o la ubicación
+  useEffect(() => {
+    if (!userLocation) return;
+
+    if (filteredPoints.length === 0) {
+      setNearestPoint(null);
+      setDistance(null);
+      return;
+    }
+
     let nearest: RecyclingPoint | null = null;
     let minDistance = Infinity;
 
-    recyclingPoints.forEach((point) => {
-      const dist = calculateDistance(userLat, userLon, point.coords[0], point.coords[1]);
+    // AQUI ESTÁ LA CLAVE: Iteramos sobre filteredPoints, no sobre todos
+    filteredPoints.forEach((point) => {
+      const dist = calculateDistance(userLocation[0], userLocation[1], point.coords[0], point.coords[1]);
       if (dist < minDistance) {
         minDistance = dist;
         nearest = point;
@@ -40,9 +60,10 @@ const Mapa = () => {
 
     setDistance(minDistance);
     setNearestPoint(nearest);
-  };
 
-  // Obtener ubicación del usuario
+  }, [userLocation, filteredPoints]); // Se ejecuta si cambia la ubicación o el filtro
+
+  // 4. Obtener ubicación del usuario
   const getLocation = () => {
     if (!navigator.geolocation) {
       setLocationStatus('Tu navegador no soporta geolocalización');
@@ -56,17 +77,16 @@ const Mapa = () => {
       (position) => {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
-        setUserLocation([lat, lng]);
+        setUserLocation([lat, lng]); // Esto disparará el useEffect de arriba automáticamente
         setLocationStatus('Ubicación obtenida');
         setIsLoading(false);
-        findNearestPoint(lat, lng);
       },
       (error) => {
         setIsLoading(false);
         let errorMsg = '';
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            errorMsg = 'Permiso de ubicación denegado. Activa los permisos en tu navegador.';
+            errorMsg = 'Permiso de ubicación denegado. Activa los permisos.';
             break;
           case error.POSITION_UNAVAILABLE:
             errorMsg = 'Ubicación no disponible.';
@@ -82,16 +102,7 @@ const Mapa = () => {
     );
   };
 
-  // Filtrar puntos
-  const filteredPoints = recyclingPoints.filter(point => {
-    const matchesType = selectedType === 'todos' || point.type === selectedType;
-    const matchesSearch = point.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         point.materials.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         point.address.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesType && matchesSearch;
-  });
-
-  // Obtener color por tipo
+  // 5. Obtener color por tipo
   const getColorByType = (type: string) => {
     const typeConfig = pointTypes.find(t => t.id === type);
     return typeConfig?.color || '#5B8A72';
@@ -195,7 +206,7 @@ const Mapa = () => {
               <path d="M2 17L12 22L22 17" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M2 12L12 17L22 12" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <h3>Punto más cercano</h3>
+            <h3>Punto más cercano (Filtrado)</h3>
           </div>
           <div className="nearest-content">
             <h4>{nearestPoint.name}</h4>
@@ -235,6 +246,7 @@ const Mapa = () => {
         <MapComponent
           points={filteredPoints}
           userLocation={userLocation}
+          selectedPoint={nearestPoint}
           onPointClick={(point) => {
             setNearestPoint(point);
             if (userLocation) {

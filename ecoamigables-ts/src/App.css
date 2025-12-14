@@ -3933,14 +3933,36 @@ body {
 /* Nearest point info */
 [data-theme="dark"] .nearest-point-info {
   background: linear-gradient(135deg, #2d4a30 0%, #1a3322 100%);
+  border-left-color: #66BB6A;
+}
+
+[data-theme="dark"] .nearest-badge-header {
+  background: #388E3C;
 }
 
 [data-theme="dark"] .nearest-content {
   background: transparent;
 }
 
+[data-theme="dark"] .nearest-content h4 {
+  color: #A5D6A7;
+}
+
+[data-theme="dark"] .nearest-details {
+  color: #E0E0E0;
+}
+
 [data-theme="dark"] .detail-item {
   background: rgba(102, 187, 106, 0.1);
+  color: #E0E0E0;
+}
+
+[data-theme="dark"] .detail-item strong {
+  color: #A5D6A7;
+}
+
+[data-theme="dark"] .detail-item svg {
+  color: #81C784;
 }
 
 /* Footer */
@@ -3969,6 +3991,24 @@ body {
 }
 
 /* Progress cards */
+[data-theme="dark"] .impact-panel {
+  background: #0c0b07 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .impact-empty {
+  background: linear-gradient(135deg, #1a1916, #0c0b07) !important;
+  color: #E0E0E0;
+}
+
+[data-theme="dark"] .impact-empty h3 {
+  color: #A5D6A7;
+}
+
+[data-theme="dark"] .impact-empty p {
+  color: #B0B0B0;
+}
+
 [data-theme="dark"] .impact-metric-card {
   background: linear-gradient(135deg, #252525, #1a1a1a) !important;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);

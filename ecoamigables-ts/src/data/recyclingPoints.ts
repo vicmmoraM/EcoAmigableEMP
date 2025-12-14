@@ -5,7 +5,7 @@ export interface RecyclingPoint {
   materials: string;
   hours: string;
   address: string;
-  type: 'principal' | 'municipal' | 'electronico' | 'otro';
+  type: 'principal' | 'municipal' | 'electronico' | 'gira' | 'otro';
   phone?: string;
   description?: string;
 }
@@ -115,10 +115,45 @@ export const recyclingPoints: RecyclingPoint[] = [
     description: 'Punto de acopio en zona costanera.'
   },
   
-  // Otros puntos
+  // Puntos GIRA - NUEVOS
   {
     id: 11,
+    coords: [-2.1923, -79.8967],
+    name: 'Punto GIRA Supermaxi Urdesa',
+    materials: 'PET, plásticos rígidos y flexibles, vidrio, cartón, papel, latas, Tetra Pak',
+    hours: 'Lun-Dom: 8:00-21:00',
+    address: 'Urdesa Central, Guayaquil',
+    type: 'gira',
+    phone: '1800-GIRA-EC',
+    description: 'Excelente punto GIRA en Urdesa Central con muy buenas reseñas por su limpieza y organización. Ideal para depositar reciclables clasificados.'
+  },
+  {
+    id: 12,
+    coords: [-2.1445, -79.9134],
+    name: 'Punto GIRA Super Akí Sauces',
+    materials: 'PET, plásticos rígidos y flexibles, vidrio, cartón, papel, latas, Tetra Pak',
+    hours: 'Lun-Dom: 8:00-21:00',
+    address: 'Av. José María Egas, Sauces, Guayaquil',
+    type: 'gira',
+    phone: '1800-GIRA-EC',
+    description: 'Punto GIRA ubicado en Sauces, útil para reciclar empaques y materiales comunes del hogar.'
+  },
+  {
+    id: 13,
     coords: [-2.1567, -79.9234],
+    name: 'Punto GIRA Gran AKI Domingo Comín',
+    materials: 'PET, plásticos rígidos y flexibles, vidrio, cartón, papel, latas, Tetra Pak',
+    hours: 'Lun-Dom: 8:00-21:00',
+    address: 'Domingo Comín, Guayaquil',
+    type: 'gira',
+    phone: '1800-GIRA-EC',
+    description: 'Punto de acopio GIRA en el sector Domingo Comín. Acepta materiales reciclables según las categorías de GIRA.'
+  },
+  
+  // Otros puntos
+  {
+    id: 14,
+    coords: [-2.1678, -79.9045],
     name: 'Puerto Limpio',
     materials: 'Reciclaje general, gestión de residuos',
     hours: 'Lun-Sab: 8:00-18:00',
@@ -132,6 +167,7 @@ export const recyclingPoints: RecyclingPoint[] = [
 export const pointTypes = [
   { id: 'todos', label: 'Todos', color: '#5B8A72' },
   { id: 'principal', label: 'Centros Principales', color: '#4CAF50' },
+  { id: 'gira', label: 'Puntos GIRA', color: '#FF6B35' },
   { id: 'electronico', label: 'Reciclaje Electrónico', color: '#2196F3' },
   { id: 'municipal', label: 'Centros Municipales', color: '#FF9800' },
   { id: 'otro', label: 'Otros', color: '#9E9E9E' }
