@@ -1,3 +1,17 @@
+/* Dark mode spacing fix for decomposition section */
+[data-theme="dark"] .decomposition-list {
+  margin-top: 12px;
+}
+
+[data-theme="dark"] .decomp-item {
+  margin-bottom: 12px; /* ensure consistent vertical rhythm */
+}
+
+/* If the pill uses a badge style, keep its offset stable in dark mode */
+[data-theme="dark"] .nearest-badge,
+[data-theme="dark"] .nearest-badge-header {
+  margin-top: 0; /* prevent unexpected upward shift */
+}
 * {
     margin: 0;
     padding: 0;
@@ -3778,15 +3792,41 @@ body {
 [data-theme="dark"] .impact-panel,
 [data-theme="dark"] .achievements-panel,
 [data-theme="dark"] .achievement-card {
-  background: #2d2d2d;
-  border-color: #404040;
+  background: #1E1E1E !important;
+  border-color: #333;
   color: #e8e8e8;
+}
+
+[data-theme="dark"] .point-card {
+  background: linear-gradient(135deg, #1E1E1E 0%, #252525 100%) !important;
+  border: 2px solid #333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="dark"] .feature-card-new:hover,
 [data-theme="dark"] .point-card:hover,
 [data-theme="dark"] .preset-goal-card:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 24px rgba(102, 187, 106, 0.3);
+  border-color: #66BB6A;
+  transform: translateY(-6px);
+}
+
+[data-theme="dark"] .point-card h3 {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .point-description {
+  background: #141414 !important;
+  color: #B0B0B0 !important;
+  border: 1px solid #2a2a2a;
+}
+
+[data-theme="dark"] .point-detail {
+  color: #C0C0C0;
+}
+
+[data-theme="dark"] .point-type-badge {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Títulos */
@@ -3930,25 +3970,101 @@ body {
 
 /* Progress cards */
 [data-theme="dark"] .impact-metric-card {
-  background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+  background: linear-gradient(135deg, #252525, #1a1a1a) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .impact-metric-label {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .impact-metric-description {
+  color: #B0B0B0 !important;
+}
+
+[data-theme="dark"] .impact-metric-value {
+  color: #66BB6A !important;
+}
+
+[data-theme="dark"] .impact-metric-icon {
+  background: rgba(102, 187, 106, 0.15) !important;
 }
 
 [data-theme="dark"] .impact-comparison {
-  background: linear-gradient(135deg, #2d4a30, #1a3322);
+  background: linear-gradient(135deg, #1e3a24, #2d4a30) !important;
+  border-left-color: #66BB6A;
+}
+
+[data-theme="dark"] .impact-comparison h3 {
+  color: #A5D6A7 !important;
 }
 
 [data-theme="dark"] .comparison-item {
-  background: rgba(102, 187, 106, 0.1);
+  background: rgba(102, 187, 106, 0.1) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .comparison-text {
+  color: #E0E0E0;
+}
+
+[data-theme="dark"] .comparison-text strong {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .comparison-text span {
+  color: #B0B0B0;
 }
 
 /* Achievement cards */
+[data-theme="dark"] .achievement-card {
+  background: linear-gradient(135deg, #252525 0%, #1a1a1a 100%) !important;
+  border: 2px solid #333 !important;
+}
+
 [data-theme="dark"] .achievement-card.locked {
-  opacity: 0.5;
+  opacity: 0.6;
+  background: linear-gradient(135deg, #1a1a1a 0%, #141414 100%) !important;
+  border-color: #2a2a2a !important;
 }
 
 [data-theme="dark"] .achievement-card.unlocked {
-  background: linear-gradient(135deg, #2d2d2d, #404040);
-  border: 1px solid #66BB6A;
+  background: linear-gradient(135deg, #1e3a24 0%, #2d5a35 100%) !important;
+  border: 2px solid #66BB6A !important;
+  box-shadow: 0 4px 20px rgba(102, 187, 106, 0.25) !important;
+}
+
+[data-theme="dark"] .achievement-card.unlocked:hover {
+  box-shadow: 0 8px 32px rgba(102, 187, 106, 0.3);
+  border-color: #81C784;
+}
+
+[data-theme="dark"] .achievement-content h4 {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .achievement-content p {
+  color: #B0B0B0;
+}
+
+[data-theme="dark"] .achievement-card.unlocked .achievement-content h4 {
+  color: #A5D6A7;
+}
+
+[data-theme="dark"] .achievement-card.unlocked .achievement-content p {
+  color: #C8E6C9;
+}
+
+[data-theme="dark"] .locked-text {
+  color: #808080;
+}
+
+[data-theme="dark"] .progress-bar-mini {
+  background: #1a1a1a;
+}
+
+[data-theme="dark"] .progress-fill-mini {
+  background: linear-gradient(90deg, #66BB6A, #4CAF50);
 }
 
 /* Stats circle */
@@ -3985,7 +4101,23 @@ body {
 
 /* Empty state */
 [data-theme="dark"] .empty-state {
-  background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+  background: #1a1a1a !important;
+  border: 2px solid #333 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .empty-state h3 {
+  color: #66BB6A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="dark"] .empty-state p {
+  color: #B0B0B0 !important;
+}
+
+[data-theme="dark"] .empty-icon {
+  opacity: 0.3 !important;
+  filter: brightness(0.8) !important;
 }
 
 /* Goal item completed */
@@ -4161,8 +4293,34 @@ body {
 
 [data-theme="dark"] .impact-panel,
 [data-theme="dark"] .achievements-panel {
-  background: #2d2d2d;
-  border: 1px solid #404040;
+  background: #1a1a1a !important;
+  border: 2px solid #333;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .impact-header {
+  border-bottom-color: #333;
+}
+
+[data-theme="dark"] .impact-header h2 {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .impact-panel h2,
+[data-theme="dark"] .impact-panel h3 {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .impact-panel p {
+  color: #B0B0B0;
+}
+
+[data-theme="dark"] .achievements-header {
+  border-bottom-color: #333;
+}
+
+[data-theme="dark"] .achievements-header h2 {
+  color: #FFFFFF;
 }
 
 /* Preset goals en modo oscuro */
@@ -4285,4 +4443,342 @@ body {
               color 0.3s ease, 
               border-color 0.3s ease,
               box-shadow 0.3s ease;
+}
+
+/* ===================================
+   MEJORAS MODO OSCURO - MODALES Y CONTRASTE
+   Agregar al final de App.css
+   =================================== */
+
+/* Modal en modo oscuro - Fondo más oscuro */
+[data-theme="dark"] .modal {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* Contenido del modal - Mejor contraste */
+[data-theme="dark"] .modal-info-content {
+  background: #1E1E1E !important;
+  border: 2px solid #404040;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* Encabezado del modal con icono */
+[data-theme="dark"] .modal-info-content > div[style*="text-align: center"] {
+  background: linear-gradient(135deg, rgba(102, 187, 106, 0.1), rgba(76, 175, 80, 0.05));
+  padding: 30px;
+  margin: -40px -40px 30px -40px;
+  border-radius: 20px 20px 0 0;
+  border-bottom: 2px solid rgba(102, 187, 106, 0.3);
+}
+
+/* Icono del modal en modo oscuro */
+[data-theme="dark"] .modal-info-content > div[style*="text-align: center"] > div[style*="border-radius: 50%"] {
+  background: rgba(102, 187, 106, 0.2) !important;
+  border: 3px solid rgba(102, 187, 106, 0.4) !important;
+  box-shadow: 0 0 30px rgba(102, 187, 106, 0.3) !important;
+}
+
+/* Títulos en modales - modo oscuro */
+[data-theme="dark"] .modal-info-content h2 {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .modal-info-content h3 {
+  color: #E0E0E0 !important;
+}
+
+[data-theme="dark"] .modal-info-content h4 {
+  color: #F0F0F0 !important;
+}
+
+/* Párrafos en modales */
+[data-theme="dark"] .modal-info-content p {
+  color: #C0C0C0 !important;
+}
+
+/* Sección de ejemplos - fondo más claro en modo oscuro */
+[data-theme="dark"] .modal-info-content > div[style*="background"] {
+  background: rgba(102, 187, 106, 0.15) !important;
+  border: 1px solid rgba(102, 187, 106, 0.3);
+}
+
+/* Tarjetas de ejemplos dentro del modal */
+[data-theme="dark"] .modal-info-content ul li,
+[data-theme="dark"] .modal-info-content li[style*="background"] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #E0E0E0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .modal-info-content ul li:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(102, 187, 106, 0.4);
+}
+
+/* Lista ordenada en "Cómo reciclar" */
+[data-theme="dark"] .modal-info-content ol li {
+  color: #D0D0D0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Sección de beneficios - fondo verde oscuro */
+[data-theme="dark"] .modal-info-content div[style*="background: #E8F5E9"] {
+  background: linear-gradient(135deg, rgba(56, 142, 60, 0.2), rgba(27, 94, 32, 0.15)) !important;
+  border: 1px solid rgba(102, 187, 106, 0.3);
+}
+
+[data-theme="dark"] .modal-info-content div[style*="background: #E8F5E9"] h3 {
+  color: #A5D6A7 !important;
+}
+
+/* Tarjetas de beneficios */
+[data-theme="dark"] .modal-info-content div[style*="background: #E8F5E9"] > div > div[style*="background: white"] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #E8E8E8 !important;
+  border: 1px solid rgba(102, 187, 106, 0.3);
+  border-left: 4px solid #66BB6A !important;
+}
+
+/* Tiempo de descomposición */
+[data-theme="dark"] .modal-info-content div[style*="background: #FFF3E0"] {
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(230, 81, 0, 0.15)) !important;
+  border-left-color: #FFB74D !important;
+  border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+[data-theme="dark"] .modal-info-content div[style*="background: #FFF3E0"] strong {
+  color: #FFB74D !important;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Botón cerrar modal más visible */
+[data-theme="dark"] .close {
+  color: #FFD700 !important;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .close:hover {
+  color: #FF6B6B !important;
+  background: rgba(255, 107, 107, 0.2);
+  text-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+}
+
+/* Modales de colores, símbolos y descomposición */
+
+/* Modal de colores */
+[data-theme="dark"] .color-item {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .color-item h3,
+[data-theme="dark"] .color-item p {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Modal de símbolos */
+[data-theme="dark"] .symbol-item {
+  background: rgba(33, 150, 243, 0.15) !important;
+  border: 2px solid rgba(33, 150, 243, 0.3);
+}
+
+[data-theme="dark"] .symbol-item:hover {
+  background: rgba(33, 150, 243, 0.25) !important;
+  border-color: rgba(33, 150, 243, 0.5);
+}
+
+[data-theme="dark"] .symbol-number {
+  color: #64B5F6 !important;
+}
+
+[data-theme="dark"] .symbol-item strong {
+  color: #90CAF9 !important;
+}
+
+[data-theme="dark"] .symbol-item p {
+  color: #C0C0C0 !important;
+}
+
+/* Modal de descomposición */
+[data-theme="dark"] .decomp-item {
+  background: rgba(255, 152, 0, 0.15) !important;
+  border-left-color: #FFB74D !important;
+  border: 1px solid rgba(255, 152, 0, 0.3);
+  color: #E0E0E0 !important;
+}
+
+[data-theme="dark"] .decomp-item:hover {
+  background: rgba(255, 152, 0, 0.25) !important;
+  border-color: rgba(255, 152, 0, 0.5);
+}
+
+[data-theme="dark"] .decomp-item strong {
+  color: #FFB74D !important;
+}
+
+/* Títulos de modales originales */
+[data-theme="dark"] .modal-info-content h2[style*="color: #4CAF50"] {
+  color: #81C784 !important;
+}
+
+[data-theme="dark"] .modal-info-content h2[style*="color: #2196F3"] {
+  color: #64B5F6 !important;
+}
+
+[data-theme="dark"] .modal-info-content h2[style*="color: #FF9800"] {
+  color: #FFB74D !important;
+}
+
+/* Info boxes generales en modo oscuro */
+[data-theme="dark"] .info-box {
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.15), rgba(25, 118, 210, 0.1)) !important;
+  border-left-color: #64B5F6 !important;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+[data-theme="dark"] .info-box h2,
+[data-theme="dark"] .info-box h3 {
+  color: #90CAF9 !important;
+}
+
+[data-theme="dark"] .info-box p {
+  color: #D0D0D0 !important;
+}
+
+/* Videos y recursos en modo oscuro */
+[data-theme="dark"] .video-card h3,
+[data-theme="dark"] .resource-card h4,
+[data-theme="dark"] .infographic-card h4 {
+  color: #81C784 !important;
+}
+
+[data-theme="dark"] .video-card p,
+[data-theme="dark"] .resource-card p {
+  color: #B0B0B0 !important;
+}
+
+[data-theme="dark"] .click-hint {
+  color: #64B5F6 !important;
+}
+
+/* Tips section en modo oscuro */
+[data-theme="dark"] .tips-section h2 {
+  color: #81C784 !important;
+}
+
+[data-theme="dark"] .tip-icon {
+  color: #66BB6A !important;
+  filter: drop-shadow(0 0 5px rgba(102, 187, 106, 0.5));
+}
+
+[data-theme="dark"] .tip-item p {
+  color: #D0D0D0 !important;
+}
+
+/* Resources section */
+[data-theme="dark"] .resource-icon {
+  background: rgba(102, 187, 106, 0.15) !important;
+  border: 1px solid rgba(102, 187, 106, 0.3);
+}
+
+/* Scrollbar en modal para modo oscuro */
+[data-theme="dark"] .modal-content-info::-webkit-scrollbar {
+  width: 12px;
+}
+
+[data-theme="dark"] .modal-content-info::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+[data-theme="dark"] .modal-content-info::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 10px;
+  border: 2px solid #1a1a1a;
+}
+
+[data-theme="dark"] .modal-content-info::-webkit-scrollbar-thumb:hover {
+  background: #66BB6A;
+}
+
+/* Mejora para listas dentro de modales */
+[data-theme="dark"] .modal-info-content ul {
+  color: #E0E0E0;
+}
+
+[data-theme="dark"] .modal-info-content ol {
+  color: #E0E0E0;
+}
+
+/* Ajuste de sombras en modo oscuro */
+[data-theme="dark"] .modal-info-content {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9),
+              0 0 100px rgba(102, 187, 106, 0.1);
+}
+
+/* Hover states mejorados en modo oscuro */
+[data-theme="dark"] .modal-info-content div[style*="transition"]:hover {
+  box-shadow: 0 6px 20px rgba(102, 187, 106, 0.3);
+}
+
+/* Strong tags en contenido de modal */
+[data-theme="dark"] .modal-info-content strong {
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+/* Span tags en contenido de modal */
+[data-theme="dark"] .modal-info-content span {
+  color: #D0D0D0;
+}
+
+/* Divs con padding dentro del modal */
+[data-theme="dark"] .modal-info-content > div[style*="padding"] {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+}
+
+/* Animaciones suaves para modo oscuro */
+[data-theme="dark"] .modal-info-content * {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Responsive - Modal en móvil modo oscuro */
+@media (max-width: 768px) {
+  [data-theme="dark"] .modal-info-content {
+    padding: 24px;
+  }
+  
+  [data-theme="dark"] .close {
+    width: 45px;
+    height: 45px;
+    font-size: 35px;
+  }
+  
+  [data-theme="dark"] .modal-info-content > div[style*="text-align: center"] {
+    margin: -24px -24px 24px -24px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  [data-theme="dark"] .modal-info-content h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  [data-theme="dark"] .modal-info-content h3 {
+    font-size: 1.2rem !important;
+  }
 }

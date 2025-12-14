@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../components/guias/Modal';
 
-type ModalType = 'colors' | 'symbols' | 'decomposition' | null;
+type ModalType = 'colors' | 'symbols' | 'decomposition' | 'organicos' | 'plastico' | 'vidrio' | 'papel' | 'metales' | 'peligrosos' | null;
 
 const Guias = () => {
   const navigate = useNavigate();
@@ -23,7 +23,29 @@ const Guias = () => {
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
           <path d="M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 4L20 12L12 20L4 12L12 4M12 7C9.24 7 7 9.24 7 12S9.24 17 12 17 17 14.76 17 12 14.76 7 12 7Z" fill="currentColor"/>
         </svg>
-      )
+      ),
+      ejemplos: [
+        'Restos de frutas y verduras',
+        'Cáscaras de huevo',
+        'Posos de café y bolsitas de té',
+        'Restos de comida (sin grasa)',
+        'Flores y plantas marchitas',
+        'Hojas secas y ramas pequeñas'
+      ],
+      comoReciclar: [
+        'Separa los residuos orgánicos en un contenedor aparte',
+        'Mantén el contenedor cerrado para evitar olores',
+        'Considera crear compost casero',
+        'NO mezcles con plásticos o papel',
+        'Entrega al recolector de basura orgánica'
+      ],
+      beneficios: [
+        'Se convierten en abono natural (compost)',
+        'Reducen el espacio en vertederos',
+        'Disminuyen emisiones de metano',
+        'Mejoran la calidad del suelo'
+      ],
+      tiempo: '3-6 meses en descomponerse'
     },
     {
       id: 'plastico',
@@ -35,7 +57,30 @@ const Guias = () => {
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
           <path d="M2 3H6L7 9L5 17H19L17 9L18 3H22L20 17C20 18.1 19.1 19 18 19H6C4.9 19 4 18.1 4 17L2 3M9 6H15V8H9V6M9 10H15V12H9V10Z" fill="currentColor"/>
         </svg>
-      )
+      ),
+      ejemplos: [
+        'Botellas de agua y refrescos (PET)',
+        'Envases de champú y detergente (HDPE)',
+        'Tapas de botellas (PP)',
+        'Bolsas de plástico limpias',
+        'Envases de yogurt y margarina',
+        'Juguetes de plástico'
+      ],
+      comoReciclar: [
+        'Enjuaga los envases antes de reciclar',
+        'Separa las tapas del cuerpo de las botellas',
+        'Aplasta las botellas para ahorrar espacio',
+        'Identifica el número de reciclaje (1-7)',
+        'NO incluyas plástico contaminado con comida',
+        'Lleva al punto de reciclaje o contenedor amarillo'
+      ],
+      beneficios: [
+        'Una botella puede reciclarse en 5 nuevas botellas',
+        'Ahorra 70% de energía vs. fabricar plástico nuevo',
+        'Reduce contaminación en océanos',
+        'El plástico reciclado tiene valor comercial'
+      ],
+      tiempo: '100-1000 años en degradarse'
     },
     {
       id: 'vidrio',
@@ -47,7 +92,30 @@ const Guias = () => {
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
           <path d="M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2Z" fill="currentColor"/>
         </svg>
-      )
+      ),
+      ejemplos: [
+        'Botellas de vino y cerveza',
+        'Frascos de mermelada y conservas',
+        'Envases de perfumes',
+        'Tarros de vidrio',
+        'Botellas de aceite',
+        'Vasos de vidrio'
+      ],
+      comoReciclar: [
+        'Enjuaga bien los envases',
+        'Retira tapas metálicas o de plástico',
+        'NO incluyas vidrios rotos sin protección',
+        'Separa por color si es posible (verde, ámbar, transparente)',
+        'NO mezcles con cristal, espejos o bombillas',
+        'Lleva al contenedor verde o punto de acopio'
+      ],
+      beneficios: [
+        'Se puede reciclar infinitas veces sin perder calidad',
+        'Ahorra 30% de energía vs. vidrio nuevo',
+        'Una tonelada de vidrio reciclado ahorra 1.2 toneladas de materia prima',
+        'El vidrio reciclado es 100% puro'
+      ],
+      tiempo: '4000 años o más en degradarse'
     },
     {
       id: 'papel',
@@ -59,7 +127,32 @@ const Guias = () => {
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
           <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2M18 20H6V4H13V9H18V20M8 15H16V17H8V15M8 11H16V13H8V11Z" fill="currentColor"/>
         </svg>
-      )
+      ),
+      ejemplos: [
+        'Periódicos y revistas',
+        'Cajas de cartón',
+        'Papel de oficina',
+        'Cuadernos y libros',
+        'Sobres (sin ventana plástica)',
+        'Cartones de huevos',
+        'Rollos de papel higiénico'
+      ],
+      comoReciclar: [
+        'Mantén el papel seco y limpio',
+        'Aplasta las cajas de cartón',
+        'Retira grapas, clips y espirales',
+        'NO incluyas papel plastificado o encerado',
+        'NO recicles papel con restos de comida o grasa',
+        'Ata el papel en paquetes o usa bolsas',
+        'Lleva al punto de acopio o contenedor azul'
+      ],
+      beneficios: [
+        'Una tonelada de papel reciclado salva 17 árboles',
+        'Ahorra 26,000 litros de agua',
+        'Consume 60% menos energía',
+        'Reduce residuos en vertederos en un 35%'
+      ],
+      tiempo: '2-5 meses en descomponerse'
     },
     {
       id: 'metales',
@@ -73,7 +166,30 @@ const Guias = () => {
           <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2" fill="none"/>
           <circle cx="12" cy="12" r="2" fill="currentColor"/>
         </svg>
-      )
+      ),
+      ejemplos: [
+        'Latas de aluminio (refrescos, cerveza)',
+        'Latas de conservas (atún, vegetales)',
+        'Papel aluminio',
+        'Tapas metálicas de frascos',
+        'Cables y alambres',
+        'Utensilios de cocina metálicos'
+      ],
+      comoReciclar: [
+        'Enjuaga las latas antes de reciclar',
+        'Aplasta las latas para ahorrar espacio',
+        'Separa por tipo de metal si es posible',
+        'NO incluyas metales con restos de pintura tóxica',
+        'Retira etiquetas de papel si es posible',
+        'Lleva al punto de reciclaje o chatarrero'
+      ],
+      beneficios: [
+        'El aluminio se recicla infinitas veces',
+        'Ahorra 95% de energía vs. aluminio nuevo',
+        'Una lata reciclada puede estar de vuelta en 60 días',
+        'Reduce la minería y contaminación del suelo'
+      ],
+      tiempo: '200-500 años en oxidarse completamente'
     },
     {
       id: 'peligrosos',
@@ -85,7 +201,32 @@ const Guias = () => {
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
           <path d="M12 2L1 21H23M12 6L19.53 19H4.47M11 10V14H13V10M11 16V18H13V16" fill="currentColor"/>
         </svg>
-      )
+      ),
+      ejemplos: [
+        'Pilas y baterías',
+        'Medicamentos vencidos',
+        'Productos de limpieza',
+        'Aceites de motor',
+        'Pinturas y solventes',
+        'Pesticidas e insecticidas',
+        'Termómetros de mercurio'
+      ],
+      comoReciclar: [
+        'NUNCA los tires a la basura común',
+        'Guárdalos en recipientes seguros',
+        'Lleva pilas a puntos de recolección especializados',
+        'Medicamentos: devuélvelos a farmacias',
+        'Aceites: llévalos a centros de acopio',
+        'NO mezcles diferentes tipos de residuos peligrosos',
+        'Consulta con tu municipio para puntos de recolección'
+      ],
+      beneficios: [
+        'Previene contaminación de suelos y agua',
+        'Evita intoxicaciones y enfermedades',
+        'Permite recuperar materiales valiosos',
+        'Protege ecosistemas y vida silvestre'
+      ],
+      tiempo: 'Pueden contaminar durante décadas o siglos'
     }
   ];
 
@@ -110,7 +251,11 @@ const Guias = () => {
             <div className="category-main-icon">{category.icon}</div>
             <h3 className="category-main-title">{category.title}</h3>
             <p className="category-main-description">{category.description}</p>
-            <button className="category-main-button" style={{ color: category.textColor }}>
+            <button 
+              className="category-main-button" 
+              style={{ color: category.textColor }}
+              onClick={() => openModal(category.id as ModalType)}
+            >
               Ver más
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -119,6 +264,123 @@ const Guias = () => {
           </div>
         ))}
       </div>
+
+      {/* Modales para cada categoría */}
+      {mainCategories.map((category) => (
+        <Modal key={category.id} isOpen={activeModal === category.id} onClose={closeModal}>
+          <div className="modal-info-content">
+            <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+              <div style={{ 
+                width: '80px', 
+                height: '80px', 
+                background: category.color, 
+                borderRadius: '50%', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                margin: '0 auto 20px',
+                color: category.textColor
+              }}>
+                {category.icon}
+              </div>
+              <h2 style={{ color: category.textColor, fontSize: '2.5em', marginBottom: '10px' }}>
+                {category.title}
+              </h2>
+              <p style={{ fontSize: '1.2em', color: '#666' }}>{category.description}</p>
+            </div>
+
+            <div style={{ 
+              background: category.color, 
+              padding: '20px', 
+              borderRadius: '15px', 
+              marginBottom: '25px' 
+            }}>
+              <h3 style={{ color: category.textColor, fontSize: '1.5em', marginBottom: '15px' }}>
+                Ejemplos de {category.title}
+              </h3>
+              <ul style={{ 
+                listStyle: 'none', 
+                padding: 0,
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '10px'
+              }}>
+                {category.ejemplos.map((ejemplo, idx) => (
+                  <li key={idx} style={{ 
+                    padding: '10px 15px', 
+                    background: 'white', 
+                    borderRadius: '10px',
+                    fontSize: '1em',
+                    color: '#333'
+                  }}>
+                    • {ejemplo}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div style={{ marginBottom: '25px' }}>
+              <h3 style={{ color: category.textColor, fontSize: '1.5em', marginBottom: '15px' }}>
+                ¿Cómo reciclar correctamente?
+              </h3>
+              <ol style={{ 
+                paddingLeft: '20px',
+                lineHeight: '1.8'
+              }}>
+                {category.comoReciclar.map((paso, idx) => (
+                  <li key={idx} style={{ 
+                    marginBottom: '10px',
+                    fontSize: '1.05em',
+                    color: '#555'
+                  }}>
+                    {paso}
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div style={{ 
+              background: '#E8F5E9', 
+              padding: '20px', 
+              borderRadius: '15px',
+              marginBottom: '25px'
+            }}>
+              <h3 style={{ color: '#2e7d32', fontSize: '1.5em', marginBottom: '15px' }}>
+                Beneficios del Reciclaje
+              </h3>
+              <div style={{ 
+                display: 'grid',
+                gap: '12px'
+              }}>
+                {category.beneficios.map((beneficio, idx) => (
+                  <div key={idx} style={{ 
+                    padding: '12px 15px', 
+                    background: 'white', 
+                    borderRadius: '10px',
+                    fontSize: '1.05em',
+                    color: '#333',
+                    borderLeft: '4px solid #4CAF50'
+                  }}>
+                    {beneficio}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ 
+              background: '#FFF3E0', 
+              padding: '15px 20px', 
+              borderRadius: '10px',
+              borderLeft: '5px solid #FF9800',
+              textAlign: 'center'
+            }}>
+              <strong style={{ color: '#E65100', fontSize: '1.1em' }}>
+                ⏱ Tiempo de descomposición: {category.tiempo}
+              </strong>
+            </div>
+          </div>
+        </Modal>
+      ))}
 
       {/* Información educativa */}
       <div className="info-box" style={{ marginTop: '60px' }}>
@@ -231,7 +493,7 @@ const Guias = () => {
         </div>
       </div>
 
-      {/* Modales */}
+      {/* Modales originales */}
       <Modal isOpen={activeModal === 'colors'} onClose={closeModal}>
         <div className="modal-info-content">
           <h2 style={{ color: '#4CAF50', textAlign: 'center', marginBottom: '30px' }}>
@@ -330,10 +592,6 @@ const Guias = () => {
       <div className="tips-section">
         <h2>Tips Rápidos</h2>
         <div className="tips-grid">
-          <div className="tip-item">
-            <span className="tip-icon">✓</span>
-            <p>Limpia los envases antes de reciclarlos</p>
-          </div>
           <div className="tip-item">
             <span className="tip-icon">✓</span>
             <p>Aplasta las botellas para ahorrar espacio</p>
